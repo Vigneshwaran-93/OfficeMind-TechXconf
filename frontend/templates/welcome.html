@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="stack" style="margin-top:20px; flex:1;">
+  <h1>A space just for you</h1>
+  <p>Whatever happened at work today — a mistake, a hard conversation, a quiet kind of overwhelm — you can talk it through here, privately and without judgment.</p>
+  <p class="privacy-note">Nothing you share is sent to your employer. Personal and identifying details are automatically kept private before anything reaches the AI.</p>
+  <div class="spacer"></div>
+  <a href="{{ url_for('home') }}" class="btn btn-primary">Start talking</a>
+  <a href="{{ url_for('help_page') }}" class="btn btn-ghost">Privacy & Help</a>
+</div>
+{% endblock %}

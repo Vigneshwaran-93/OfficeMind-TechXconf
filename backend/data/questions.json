@@ -1,0 +1,228 @@
+{
+  "categories": {
+    "behaviour_communication": {
+      "title": "Behaviour & Communication",
+      "icon": "speech-bubbles",
+      "description": "Handle conversations, mistakes, uncertainty, and fear of judgment.",
+      "stage1": [
+        {"id": "manager_conversation", "label": "How do I speak to my manager?"},
+        {"id": "mistake_at_work", "label": "I made a mistake. How do I admit it?"},
+        {"id": "new_to_tool", "label": "I am new to Git or another tool."},
+        {"id": "scared_to_ask", "label": "I am scared to ask a basic question."},
+        {"id": "client_meeting", "label": "How do I handle a client meeting?"},
+        {"id": "disagree_feedback", "label": "How do I disagree or ask for feedback?"},
+        {"id": "something_else", "label": "Something else", "free_text": true}
+      ],
+      "generic_stage2": [
+        {"id": "afraid_judged", "label": "I am afraid of being judged"},
+        {"id": "disappoint_someone", "label": "I think I will disappoint someone"},
+        {"id": "dont_know_what_to_say", "label": "I do not know what to say"},
+        {"id": "worried_consequences", "label": "I am worried about the consequences"},
+        {"id": "overwhelmed", "label": "I cannot explain it, but I feel overwhelmed"}
+      ],
+      "generic_stage3": [
+        {"id": "calm_down", "label": "Help me calm down first"},
+        {"id": "what_next", "label": "Tell me what I can do next"},
+        {"id": "find_words", "label": "Help me find the right words"},
+        {"id": "practise", "label": "Practise the conversation with me"},
+        {"id": "just_talk", "label": "Let me talk and help me understand my feelings"}
+      ],
+      "branches": {
+        "mistake_at_work": {
+          "stage2": [
+            {"id": "manager_angry", "label": "My manager will be angry"},
+            {"id": "lose_trust", "label": "My team will lose trust in me"},
+            {"id": "dont_know_explain", "label": "I do not know how to explain it"},
+            {"id": "panicked", "label": "I feel panicked and cannot think clearly"}
+          ],
+          "stage3": [
+            {"id": "calm_before_respond", "label": "Calm down before I respond"},
+            {"id": "decide_report", "label": "Decide whether and how to report it"},
+            {"id": "draft_message", "label": "Draft a message to my manager"},
+            {"id": "practise_what_to_say", "label": "Practise what I should say"}
+          ]
+        }
+      }
+    },
+    "belonging_relationships": {
+      "title": "Belonging & Workplace Relationships",
+      "icon": "heart-handshake",
+      "description": "Support for feeling alone, intimidated, excluded, or uncertain.",
+      "stage1": [
+        {"id": "joined_recently_lonely", "label": "I joined recently and feel lonely."},
+        {"id": "nobody_talks", "label": "Nobody talks to me after induction."},
+        {"id": "scared_of_manager", "label": "I feel scared of my manager."},
+        {"id": "feel_excluded", "label": "I feel excluded from team conversations."},
+        {"id": "dont_know_approach", "label": "I do not know how to approach colleagues."},
+        {"id": "teammates_judge", "label": "I am worried that my teammates judge me."},
+        {"id": "something_else", "label": "Something else", "free_text": true}
+      ],
+      "generic_stage2": [
+        {"id": "afraid_rejected", "label": "I am afraid of being rejected"},
+        {"id": "dont_belong", "label": "I feel like I do not belong here"},
+        {"id": "dont_know_why", "label": "I do not know why this is happening"},
+        {"id": "getting_worse", "label": "I am worried it is getting worse"},
+        {"id": "overwhelmed", "label": "I cannot explain it, but I feel overwhelmed"}
+      ],
+      "generic_stage3": [
+        {"id": "calm_down", "label": "Help me calm down first"},
+        {"id": "ways_to_connect", "label": "Suggest low-pressure ways to connect"},
+        {"id": "understand_feelings", "label": "Help me understand my feelings"},
+        {"id": "practise", "label": "Practise what I could say to someone"},
+        {"id": "just_talk", "label": "Let me talk it through"}
+      ],
+      "branches": {
+        "joined_recently_lonely": {
+          "stage2": [
+            {"id": "no_friends_yet", "label": "I have not connected with anyone yet"},
+            {"id": "team_already_close", "label": "The team seems already close-knit"},
+            {"id": "dont_know_how", "label": "I do not know how to start a conversation"},
+            {"id": "overwhelmed", "label": "Everything still feels new and overwhelming"}
+          ],
+          "stage3": [
+            {"id": "calm_down", "label": "Help me feel less anxious about it"},
+            {"id": "ways_to_connect", "label": "Give me low-pressure ways to connect"},
+            {"id": "practise_intro", "label": "Practise a simple way to start talking to someone"},
+            {"id": "just_talk", "label": "Let me just talk about how I am feeling"}
+          ]
+        }
+      }
+    },
+    "workload_burnout": {
+      "title": "Workload & Burnout",
+      "icon": "gauge",
+      "description": "Manage overload, competing priorities, and boundaries.",
+      "stage1": [
+        {"id": "too_many_tickets", "label": "I have too many tickets to solve."},
+        {"id": "extra_work", "label": "I keep receiving extra work."},
+        {"id": "working_late", "label": "I am working late every day."},
+        {"id": "cant_decide_priority", "label": "I cannot decide what to do first."},
+        {"id": "guilty_break", "label": "I feel guilty taking a break."},
+        {"id": "cant_switch_off", "label": "I cannot switch off after work."},
+        {"id": "something_else", "label": "Something else", "free_text": true}
+      ],
+      "generic_stage2": [
+        {"id": "afraid_falling_behind", "label": "I am afraid of falling behind"},
+        {"id": "disappoint_team", "label": "I think I will disappoint my team"},
+        {"id": "dont_know_priority", "label": "I do not know what matters most"},
+        {"id": "worried_burnout", "label": "I am worried I am heading toward burnout"},
+        {"id": "overwhelmed", "label": "I cannot explain it, but I feel overwhelmed"}
+      ],
+      "generic_stage3": [
+        {"id": "calm_down", "label": "Help me calm down first"},
+        {"id": "prioritise", "label": "Help me prioritise what to do next"},
+        {"id": "find_words", "label": "Help me find the right words for my manager"},
+        {"id": "practise", "label": "Practise a workload conversation with me"},
+        {"id": "just_talk", "label": "Let me talk and help me understand my feelings"}
+      ],
+      "branches": {
+        "too_many_tickets": {
+          "stage2": [
+            {"id": "wont_finish", "label": "I am afraid I will not finish them all"},
+            {"id": "manager_notice", "label": "My manager will notice I am behind"},
+            {"id": "dont_know_order", "label": "I do not know which ones matter most"},
+            {"id": "panicked", "label": "I feel panicked and cannot think clearly"}
+          ],
+          "stage3": [
+            {"id": "calm_down", "label": "Help me calm down first"},
+            {"id": "prioritise_list", "label": "Help me sort them by priority"},
+            {"id": "draft_message", "label": "Draft a message asking for help or more time"},
+            {"id": "practise_what_to_say", "label": "Practise raising this with my manager"}
+          ]
+        }
+      }
+    },
+    "anxiety_confidence": {
+      "title": "Anxiety, Pressure & Confidence",
+      "icon": "heart-pulse",
+      "description": "Help with overthinking, anticipating failure, and composure.",
+      "stage1": [
+        {"id": "meeting_panicking", "label": "I have a client meeting and I am panicking."},
+        {"id": "fear_mistake", "label": "I keep thinking I will make a mistake."},
+        {"id": "anxious_manager_messages", "label": "I feel anxious when my manager messages me."},
+        {"id": "afraid_deadline", "label": "I am afraid of missing a deadline."},
+        {"id": "comparing_others", "label": "I keep comparing myself with others."},
+        {"id": "replaying_conversation", "label": "I cannot stop replaying a conversation."},
+        {"id": "something_else", "label": "Something else", "free_text": true}
+      ],
+      "generic_stage2": [
+        {"id": "afraid_judged", "label": "I am afraid of being judged"},
+        {"id": "afraid_fail", "label": "I am afraid of failing"},
+        {"id": "dont_know_what_to_say", "label": "I do not know what to say or do"},
+        {"id": "worried_consequences", "label": "I am worried about the consequences"},
+        {"id": "overwhelmed", "label": "I cannot explain it, but I feel overwhelmed"}
+      ],
+      "generic_stage3": [
+        {"id": "calm_down", "label": "Help me calm down first"},
+        {"id": "ground_me", "label": "Help me ground myself right now"},
+        {"id": "clarify_thoughts", "label": "Help me think this through clearly"},
+        {"id": "practise", "label": "Help me prepare for the moment"},
+        {"id": "just_talk", "label": "Let me talk and help me understand my feelings"}
+      ],
+      "branches": {
+        "meeting_panicking": {
+          "stage2": [
+            {"id": "say_wrong_thing", "label": "I am afraid I will say the wrong thing"},
+            {"id": "client_judge", "label": "The client will judge our team"},
+            {"id": "not_prepared", "label": "I do not feel prepared"},
+            {"id": "panicked", "label": "I feel panicked and cannot think clearly"}
+          ],
+          "stage3": [
+            {"id": "calm_down", "label": "Help me calm down before the meeting"},
+            {"id": "ground_me", "label": "Walk me through a quick grounding exercise"},
+            {"id": "prepare_points", "label": "Help me organise what I want to say"},
+            {"id": "practise_meeting", "label": "Practise the opening of the meeting with me"}
+          ]
+        }
+      }
+    },
+    "personal_other": {
+      "title": "Personal & Other Work Concerns",
+      "icon": "compass",
+      "description": "Flexible category, including personal circumstances affecting work.",
+      "stage1": [
+        {"id": "health_concern", "label": "Personal health concerns affecting work."},
+        {"id": "balance_responsibilities", "label": "Difficulty balancing work and personal life."},
+        {"id": "unfair_treatment", "label": "A concern about unfair treatment or conflict."},
+        {"id": "returning_after_break", "label": "Returning to work after a difficult period."},
+        {"id": "career_uncertain", "label": "Feeling uncertain about career direction."},
+        {"id": "cant_explain", "label": "Something else I cannot quite explain."},
+        {"id": "something_else", "label": "Something else", "free_text": true}
+      ],
+      "generic_stage2": [
+        {"id": "afraid_judged", "label": "I am afraid of being judged"},
+        {"id": "privacy_worry", "label": "I am worried about my privacy"},
+        {"id": "dont_know_what_to_say", "label": "I do not know what to say to anyone"},
+        {"id": "worried_consequences", "label": "I am worried about the consequences"},
+        {"id": "overwhelmed", "label": "I cannot explain it, but I feel overwhelmed"}
+      ],
+      "generic_stage3": [
+        {"id": "calm_down", "label": "Help me calm down first"},
+        {"id": "what_next", "label": "Tell me what options I have"},
+        {"id": "find_words", "label": "Help me find the right words"},
+        {"id": "practise", "label": "Practise a conversation with me"},
+        {"id": "just_talk", "label": "Let me talk and help me understand my feelings"}
+      ],
+      "branches": {
+        "unfair_treatment": {
+          "stage2": [
+            {"id": "not_believed", "label": "I am afraid I will not be believed"},
+            {"id": "will_get_worse", "label": "I am worried it will get worse"},
+            {"id": "dont_know_options", "label": "I do not know what my options are"},
+            {"id": "panicked", "label": "I feel panicked and cannot think clearly"}
+          ],
+          "stage3": [
+            {"id": "calm_down", "label": "Help me calm down first"},
+            {"id": "understand_options", "label": "Help me understand what options exist (HR, documentation)"},
+            {"id": "document", "label": "Help me think through documenting what happened"},
+            {"id": "just_talk", "label": "Let me talk it through first"}
+          ]
+        }
+      }
+    }
+  },
+  "checkin": {
+    "stress_scale": {"min": 1, "max": 10, "label": "How stressed do you feel right now?"},
+    "feelings": ["anxious", "overwhelmed", "embarrassed", "lonely", "frustrated", "numb", "hopeful", "calm"]
+  }
+}

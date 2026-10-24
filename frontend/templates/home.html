@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+{% block topbar_content %}
+<a class="icon-btn" href="{{ url_for('welcome') }}" aria-label="Back">{{ icon('back') }}</a>
+<span class="brand">What's going on?</span>
+<a class="icon-btn" href="{{ url_for('profile') }}" aria-label="Profile">{{ icon('user') }}</a>
+{% endblock %}
+{% block content %}
+<p>Pick what feels closest — we can always adjust as we talk.</p>
+<div class="stack">
+  {% for key, cat in categories.items() %}
+  <a class="category-card" href="{{ url_for('questions', category=key) }}">
+    <span class="icon">{{ icon(cat.icon) }}</span>
+    <span>
+      <span class="title">{{ cat.title }}</span>
+      <p class="desc">{{ cat.description }}</p>
+    </span>
+  </a>
+  {% endfor %}
+  <a class="category-card" href="{{ url_for('questions', category='other') }}">
+    <span class="icon">{{ icon('compass') }}</span>
+    <span>
+      <span class="title">Something else</span>
+      <p class="desc">Not sure which category fits — just start talking.</p>
+    </span>
+  </a>
+</div>
+{% endblock %}

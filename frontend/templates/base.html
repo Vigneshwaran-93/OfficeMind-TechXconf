@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{% block title %}OfficeMind{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="phone-outer">
+  <div class="phone">
+    {% block topbar %}
+    <div class="topbar">
+      {% block topbar_content %}
+      <span class="brand">OfficeMind</span>
+      <a class="icon-btn" href="{{ url_for('help_page') }}" title="Help & Safety" aria-label="Help & Safety">
+        {% from "_icons.html" import icon %}{{ icon('help') }}
+      </a>
+      {% endblock %}
+    </div>
+    {% endblock %}
+    <div class="screen">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for m in messages %}<div class="flash">{{ m }}</div>{% endfor %}
+        {% endif %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+    </div>
+  </div>
+</div>
+{% block scripts %}{% endblock %}
+</body>
+</html>

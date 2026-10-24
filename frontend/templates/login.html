@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+{% block topbar_content %}<span class="brand">OfficeMind</span>{% endblock %}
+{% block content %}
+<div class="stack" style="margin-top:30px;">
+  <div style="text-align:center; margin-bottom:10px; color: var(--primary);">{{ icon('lock', 40) }}</div>
+  <h1 style="text-align:center;">Welcome back</h1>
+  <p style="text-align:center;">A private, judgment-free space for workplace moments.</p>
+  <form method="post" class="stack">
+    <div>
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" required autocomplete="username">
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required autocomplete="current-password">
+    </div>
+    <button type="submit" class="btn btn-primary">Log in</button>
+  </form>
+  <p style="text-align:center;">New here? <a href="{{ url_for('register') }}">Create an account</a></p>
+  <p class="privacy-note">Your data is never shared with your employer. Everything you say is kept private to you.</p>
+</div>
+{% endblock %}

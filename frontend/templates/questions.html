@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+{% block topbar_content %}
+<button class="icon-btn" id="backBtn" aria-label="Back">{{ icon('back') }}</button>
+<span class="brand">{{ cat_data.title }}</span>
+<span style="width:40px;"></span>
+{% endblock %}
+{% block content %}
+<div class="progress" id="progress">
+  <div class="dot done"></div><div class="dot"></div><div class="dot"></div>
+</div>
+<div id="stageLabel" style="font-size:13px;color:var(--ink-soft);margin-bottom:10px;"></div>
+
+<div id="stageContainer" class="stack"></div>
+
+<div id="freeTextContainer" class="stack" style="display:none;">
+  <textarea id="freeTextInput" placeholder="Describe it in your own words..."></textarea>
+  <button class="btn btn-primary" id="freeTextSubmit">Continue</button>
+</div>
+
+<div id="checkinContainer" class="stack" style="display:none;">
+  <h2>A quick check-in</h2>
+  <p>This is just for you to reflect — not a clinical measurement.</p>
+  <div class="slider-row">
+    <label for="stressSlider" id="stressLabel">{{ checkin.stress_scale.label }} (optional)</label>
+    <input type="range" id="stressSlider" min="{{ checkin.stress_scale.min }}" max="{{ checkin.stress_scale.max }}" value="5">
+    <div style="text-align:center;" id="stressValue">5</div>
+  </div>
+  <label>How are you feeling? (optional, pick any)</label>
+  <div class="chip-group" id="feelingChips">
+    {% for f in checkin.feelings %}
+    <div class="chip" data-feeling="{{ f }}">{{ f }}</div>
+    {% endfor %}
+  </div>
+  <button class="btn btn-primary" id="checkinContinue">Continue to voice support</button>
+  <button class="btn btn-secondary" id="checkinContinueText">Continue with text instead</button>
+</div>
+
+<div class="spacer"></div>
+<button class="btn btn-ghost" id="skipBtn">Skip this step</button>
+
+<script id="catData" type="application/json">{{ cat_data | tojson }}</script>
+<script>const CATEGORY = {{ category | tojson }};</script>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/questions.js') }}"></script>
+{% endblock %}

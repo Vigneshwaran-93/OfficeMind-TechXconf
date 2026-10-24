@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+{% block topbar_content %}<span class="brand">OfficeMind</span>{% endblock %}
+{% block content %}
+<div class="stack" style="margin-top:20px;">
+  <h1 style="text-align:center;">Create your space</h1>
+  <p style="text-align:center;">No real name or email needed — just pick a username.</p>
+  <form method="post" class="stack">
+    <div>
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" minlength="3" required autocomplete="username">
+    </div>
+    <div>
+      <label for="display_name">Display name (optional)</label>
+      <input type="text" id="display_name" name="display_name" autocomplete="nickname">
+    </div>
+    <div>
+      <label for="password">Password (min 8 characters)</label>
+      <input type="password" id="password" name="password" minlength="8" required autocomplete="new-password">
+    </div>
+    <button type="submit" class="btn btn-primary">Create account</button>
+  </form>
+  <p style="text-align:center;">Already have an account? <a href="{{ url_for('login') }}">Log in</a></p>
+</div>
+{% endblock %}
