@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+{% block topbar_content %}
+<button class="icon-btn" id="endBtn" aria-label="End session">{{ icon('close') }}</button>
+<span class="brand">OfficeMind</span>
+<a class="icon-btn" href="{{ url_for('help_page') }}" aria-label="Help & Safety">{{ icon('help') }}</a>
+{% endblock %}
+{% block content %}
+<div id="crisisBanner" class="crisis-banner" style="display:none;"></div>
+<div class="transcript" id="transcript"></div>
+<div class="status-line" id="statusLine"></div>
+
+<div class="control-bar" id="voiceControls">
+  <button class="icon-btn" id="muteBtn" aria-label="Mute microphone">{{ icon('mic-off') }}</button>
+  <button class="mic-btn" id="micBtn" aria-label="Tap to talk">{{ icon('mic', 26) }}</button>
+  <button class="icon-btn" id="stopSpeakingBtn" aria-label="Stop AI speaking">{{ icon('stop') }}</button>
+  <button class="icon-btn" id="switchToTextBtn" aria-label="Switch to text">{{ icon('keyboard') }}</button>
+</div>
+
+<div class="control-bar" id="textControls" style="display:none;">
+  <button class="icon-btn" id="switchToVoiceBtn" aria-label="Switch to voice">{{ icon('mic') }}</button>
+  <div class="text-row">
+    <input type="text" id="textInput" placeholder="Type your message...">
+  </div>
+  <button class="send-btn" id="sendBtn" aria-label="Send">{{ icon('send', 20) }}</button>
+</div>
+
+<div id="endModal" class="card" style="display:none; position:absolute; left:20px; right:20px; bottom:90px; z-index:5;">
+  <h2>End this conversation?</h2>
+  <p>You'll get a short summary, suggested words, and one next step.</p>
+  <div class="stack">
+    <button class="btn btn-primary" id="confirmEndBtn">End & see my plan</button>
+    <button class="btn btn-ghost" id="cancelEndBtn">Keep talking</button>
+  </div>
+</div>
+
+<script>
+  window.OM = {
+    sessionId: {{ session_id | tojson }},
+    openingMessage: {{ opening_message | tojson }},
+    preferredInteraction: {{ preferred_interaction | tojson }},
+    maxAudioSeconds: {{ max_audio_seconds | tojson }},
+    helpUrl: {{ url_for('help_page') | tojson }},
+  };
+</script>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/companion.js') }}"></script>
+{% endblock %}
