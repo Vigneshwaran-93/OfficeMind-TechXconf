@@ -37,7 +37,8 @@ def generate_reply(system_instruction: str, history: list[dict], user_message: s
         config=types.GenerateContentConfig(
             system_instruction=system_instruction,
             temperature=0.7,
-            max_output_tokens=300,
+            max_output_tokens=600,
+            thinking_config=types.ThinkingConfig(thinking_budget=0),
         ),
     )
     return (response.text or "").strip()
@@ -68,7 +69,11 @@ def generate_action_plan(system_instruction: str, history: list[dict]) -> dict:
     response = client.models.generate_content(
         model=config.GEMINI_CHAT_MODEL,
         contents=[types.Content(role="user", parts=[types.Part(text=instruction)])],
-        config=types.GenerateContentConfig(temperature=0.4, max_output_tokens=400),
+        config=types.GenerateContentConfig(
+            temperature=0.4,
+            max_output_tokens=800,
+            thinking_config=types.ThinkingConfig(thinking_budget=0),
+        ),
     )
     raw = _strip_code_fences(response.text or "")
     try:
@@ -101,7 +106,11 @@ def classify_ambiguous_safety(masked_text: str) -> dict:
     response = client.models.generate_content(
         model=config.GEMINI_CHAT_MODEL,
         contents=[types.Content(role="user", parts=[types.Part(text=prompt)])],
-        config=types.GenerateContentConfig(temperature=0.0, max_output_tokens=50),
+        config=types.GenerateContentConfig(
+            temperature=0.0,
+            max_output_tokens=100,
+            thinking_config=types.ThinkingConfig(thinking_budget=0),
+        ),
     )
     try:
         data = json.loads(_strip_code_fences(response.text or "{}"))
