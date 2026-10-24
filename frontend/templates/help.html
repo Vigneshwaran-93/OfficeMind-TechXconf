@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+{% block topbar_content %}
+<a class="icon-btn" href="javascript:history.back()" aria-label="Back">{{ icon('back') }}</a>
+<span class="brand">Help & Safety</span>
+<span style="width:40px;"></span>
+{% endblock %}
+{% block content %}
+
+<h2>If you're in crisis</h2>
+<p>If you are in immediate danger, please contact local emergency services. These helplines are free and available in India:</p>
+<div class="help-list" style="margin-bottom:20px;">
+  <div class="helpline"><div class="name">Tele-MANAS (24/7)</div><div class="contact">14416 or 1-800-891-4416</div></div>
+  <div class="helpline"><div class="name">KIRAN Mental Health Helpline (24/7)</div><div class="contact">1800-599-0019</div></div>
+  <div class="helpline"><div class="name">iCall</div><div class="contact">9152987821</div></div>
+</div>
+<p style="font-size:12px;">If you are outside India, please search for your local crisis or emergency helpline. We can't guarantee how any third-party service handles confidentiality.</p>
+
+<h2>When to involve someone else</h2>
+<p>If something you're experiencing involves harassment, bullying, discrimination, or unsafe conditions, OfficeMind can help you think it through — but documenting what happened, speaking with HR, a trusted person, or a qualified professional may also be appropriate. This isn't a reflection of how you communicate; some situations need more than conversation.</p>
+
+<h2>Your privacy</h2>
+<ul style="color:var(--ink-soft); line-height:1.6; padding-left:18px;">
+  <li>OfficeMind is never shared with your employer.</li>
+  <li>Names, companies, ticket IDs, amounts, and similar details are automatically masked before anything reaches the AI.</li>
+  <li>Raw transcripts are not stored. Only a plan you choose to save is kept, and only in masked form.</li>
+  <li>You can delete your account and all data at any time from your Profile.</li>
+</ul>
+<a class="btn btn-secondary" href="{{ url_for('profile') }}" style="margin:12px 0 20px;">Go to Profile & privacy controls</a>
+
+{% if saved_plans %}
+<h2>Your saved plans</h2>
+<div class="stack" style="margin-bottom:20px;">
+  {% for p in saved_plans %}
+  <div class="card">
+    <p style="margin-bottom:6px;">{{ p.summary }}</p>
+    <p style="font-size:12px; margin:0;">Next step: {{ p.next_step }}</p>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+<p style="text-align:center; font-size:12px;">OfficeMind is a supportive companion, not a therapist, doctor, or HR representative.</p>
+{% endblock %}

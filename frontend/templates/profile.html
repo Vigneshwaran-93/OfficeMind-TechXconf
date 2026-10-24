@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+{% block topbar_content %}
+<a class="icon-btn" href="{{ url_for('welcome') }}" aria-label="Back">{{ icon('back') }}</a>
+<span class="brand">Profile</span>
+<span style="width:40px;"></span>
+{% endblock %}
+{% block content %}
+
+<h2>Tone & style</h2>
+<form method="post" class="stack" style="margin-bottom:18px;">
+  <input type="hidden" name="kind" value="setting">
+  <div>
+    <label for="tone">Preferred tone</label>
+    <select name="value" id="tone" onchange="this.form.setting_key.value='tone'; this.form.submit();">
+      <option value="">Choose...</option>
+      <option value="gentle">Gentle</option>
+      <option value="direct">Direct</option>
+    </select>
+  </div>
+  <input type="hidden" name="setting_key" value="">
+</form>
+
+<form method="post" class="stack" style="margin-bottom:18px;">
+  <input type="hidden" name="kind" value="setting">
+  <div>
+    <label for="length">Reply length</label>
+    <select name="value" id="length" onchange="this.form.setting_key.value='reply_length'; this.form.submit();">
+      <option value="">Choose...</option>
+      <option value="short">Short</option>
+      <option value="normal">Normal</option>
+    </select>
+  </div>
+  <input type="hidden" name="setting_key" value="">
+</form>
+
+<form method="post" class="stack" style="margin-bottom:24px;">
+  <input type="hidden" name="kind" value="setting">
+  <div>
+    <label for="voice_default">Voice by default</label>
+    <select name="value" id="voice_default" onchange="this.form.setting_key.value='voice_default'; this.form.submit();">
+      <option value="">Choose...</option>
+      <option value="on">On</option>
+      <option value="off">Off</option>
+    </select>
+  </div>
+  <input type="hidden" name="setting_key" value="">
+</form>
+
+{% macro pref_list(title, kind, placeholder) %}
+<h2>{{ title }}</h2>
+<div class="profile-list">
+  {% for p in grouped.get(kind, []) %}
+  <div class="profile-item">
+    <span>{{ p.value }}</span>
+    <form method="post" action="{{ url_for('profile_delete', pref_id=p.id) }}">
+      <button type="submit" aria-label="Delete">{{ icon('close', 16) }}</button>
+    </form>
+  </div>
+  {% else %}
+  <p style="font-size:13px;">Nothing added yet.</p>
+  {% endfor %}
+</div>
+<form method="post" class="stack" style="margin-bottom:22px;">
+  <input type="hidden" name="kind" value="{{ kind }}">
+  <input type="text" name="value" placeholder="{{ placeholder }}" required>
+  <button type="submit" class="btn btn-secondary">Add</button>
+</form>
+{% endmacro %}
+
+{{ pref_list("Likes", "like", "e.g. short answers, humour") }}
+{{ pref_list("Dislikes", "dislike", "e.g. breathing exercises") }}
+{{ pref_list("Word triggers to avoid", "trigger", "e.g. a specific word or phrase") }}
+{{ pref_list("Always-mask terms (private)", "mask_term", "e.g. your company or team name") }}
+
+<div class="spacer"></div>
+<form method="post" action="{{ url_for('delete_account') }}" onsubmit="return confirm('This permanently deletes your account and all data. Continue?');">
+  <button type="submit" class="btn btn-danger">Delete my account & all data</button>
+</form>
+<a class="btn btn-ghost" href="{{ url_for('logout') }}">Log out</a>
+{% endblock %}
