@@ -1,0 +1,15 @@
+fastapi
+uvicorn[standard]
+flask
+requests
+sqlalchemy
+python-dotenv
+pydantic
+bcrypt
+PyJWT
+google-genai
+faster-whisper
+presidio-analyzer
+presidio-anonymizer
+spacy
+python-multipart
