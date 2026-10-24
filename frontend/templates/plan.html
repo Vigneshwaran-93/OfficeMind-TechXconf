@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+{% block topbar_content %}
+<span style="width:40px;"></span>
+<span class="brand">Your plan</span>
+<a class="icon-btn" href="{{ url_for('help_page') }}" aria-label="Help & Safety">{{ icon('help') }}</a>
+{% endblock %}
+{% block content %}
+<div class="plan-section">
+  <h2>What we understood</h2>
+  <p>{{ plan.summary }}</p>
+</div>
+
+{% if plan.suggested_words %}
+<div class="plan-section">
+  <h2>Words you can use</h2>
+  <div class="plan-words" id="wordsText">{{ plan.suggested_words }}</div>
+  <button class="btn btn-secondary copy-btn" id="copyBtn">{{ icon('copy', 16) }} Copy to clipboard</button>
+</div>
+{% endif %}
+
+<div class="plan-section">
+  <h2>One manageable next step</h2>
+  <p>{{ plan.next_step }}</p>
+</div>
+
+{% if plan.suggested_preference %}
+<div class="plan-section card">
+  <p style="margin-bottom:10px;">I noticed something that might help future conversations: <strong>{{ plan.suggested_preference }}</strong>. Save this as a preference?</p>
+  <div class="stack">
+    <button class="btn btn-secondary" id="savePrefBtn">Save</button>
+    <button class="btn btn-ghost" id="noPrefBtn">No thanks</button>
+  </div>
+</div>
+{% endif %}
+
+<div class="plan-section">
+  <h2>How are you feeling now?</h2>
+  <div class="feeling-options" id="feelingOptions">
+    <button class="option-btn" data-feeling="calmer">A little calmer</button>
+    <button class="option-btn" data-feeling="clearer">Clearer about what to do</button>
+    <button class="option-btn" data-feeling="more_support">I need more support</button>
+  </div>
+</div>
+
+<div id="moreSupport" class="card" style="display:none; margin-bottom:16px;">
+  <h2>You deserve real support</h2>
+  <p>This sounds like something worth more than a chat. Consider reaching out to HR, a trusted person, or a professional. You can also continue talking here right now.</p>
+  <div class="stack">
+    <a class="btn btn-secondary" href="{{ url_for('help_page') }}">See Help & Safety resources</a>
+    <a class="btn btn-ghost" href="{{ url_for('home') }}">Continue talking</a>
+  </div>
+</div>
+
+<div class="spacer"></div>
+<div class="stack">
+  <button class="btn btn-secondary" id="savePlanBtn">Save this plan privately</button>
+  <a class="btn btn-ghost" href="{{ url_for('home') }}">Done — back to home</a>
+</div>
+
+<script>
+document.getElementById("copyBtn")?.addEventListener("click", () => {
+  const text = document.getElementById("wordsText").textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById("copyBtn");
+    const original = btn.innerHTML;
+    btn.textContent = "Copied!";
+    setTimeout(() => (btn.innerHTML = original), 1500);
+  });
+});
+
+document.getElementById("savePlanBtn")?.addEventListener("click", (e) => {
+  fetch("/plan/save", {
+    method: "POST", headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({save: true}),
+  }).then(() => { e.target.textContent = "Saved"; e.target.disabled = true; });
+});
+
+document.getElementById("savePrefBtn")?.addEventListener("click", (e) => {
+  fetch("/profile", {method: "POST", headers: {"Content-Type": "application/x-www-form-urlencoded"},
+    body: new URLSearchParams({kind: "like", value: {{ (plan.suggested_preference or "") | tojson }} })
+  }).then(() => { e.target.textContent = "Saved"; e.target.disabled = true; });
+});
+document.getElementById("noPrefBtn")?.addEventListener("click", (e) => {
+  e.target.closest(".plan-section").style.display = "none";
+});
+
+document.querySelectorAll("#feelingOptions .option-btn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll("#feelingOptions .option-btn").forEach((b) => b.classList.remove("selected"));
+    btn.classList.add("selected");
+    const feeling = btn.dataset.feeling;
+    fetch("/plan/feeling", {
+      method: "POST", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({feeling_after: feeling}),
+    });
+    document.getElementById("moreSupport").style.display = feeling === "more_support" ? "block" : "none";
+  });
+});
+</script>
+{% endblock %}
